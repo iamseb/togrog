@@ -4,12 +4,12 @@ import cyclone
 from twisted.python import log
 from twisted.internet import defer
 
-import conf
+import settings
 
-class MistralRequestHandler(cyclone.web.RequestHandler):
+class TogRogRequestHandler(cyclone.web.RequestHandler):
     def render(self, template_name, *args, **kwargs):
         template = self.application.jinja.get_template(template_name)
-        args[0].update({'settings': conf.settings })
+        args[0].update({'settings': settings })
         x = template.render(*args, **kwargs)
         self.write(x)
     
@@ -19,3 +19,8 @@ class MistralRequestHandler(cyclone.web.RequestHandler):
         if user_email: 
             defer.returnValue(user_email)
 
+
+class IndexHandler(TogRogRequestHandler):
+    def get(self):
+        self.write("Hello")
+        self.finish()

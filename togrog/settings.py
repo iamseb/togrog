@@ -42,7 +42,7 @@ def url_mappings():
     import handlers
     return [
         (r"/", handlers.IndexHandler),
-        (r"/login/?", handlers.AuthHandler),
+        #(r"/login/?", handlers.AuthHandler),
     ]
     
     
